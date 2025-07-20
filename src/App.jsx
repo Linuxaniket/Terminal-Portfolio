@@ -11,7 +11,6 @@ import Projects from "./components/Projects.js";
 import Skills from "./components/Skills.js";
 import Contact from "./components/Contact.js";
 
-
 import { colors } from "./utils/colors.js";
 
 const __filename = fileURLToPath(import.meta.url);

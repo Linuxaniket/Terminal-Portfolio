@@ -13,39 +13,44 @@ export default function Contact({ data, onBack }) {
       icon: "📧",
       label: "Email",
       value: data.email,
-      link: `mailto:${data.email}`
+      link: `mailto:${data.email}`,
     },
     {
       icon: "🌐",
       label: "Website",
       value: data.website,
-      link: data.website
+      link: data.website,
     },
     {
       icon: "💼",
       label: "LinkedIn",
       value: data.linkedin,
-      link: data.linkedin
+      link: data.linkedin,
     },
     {
       icon: "🐙",
       label: "GitHub",
       value: data.github,
-      link: data.github
+      link: data.github,
     },
     {
       icon: "🐦",
       label: "Twitter",
       value: data.twitter,
-      link: data.twitter
-    }
+      link: data.twitter,
+    },
   ];
 
   return (
     <Box flexDirection="column">
-      <Text>{createBox(colors.success("📫 GET IN TOUCH"), { borderColor: "green" })}</Text>
+      <Text>
+        {createBox(colors.success("📫 GET IN TOUCH"), { borderColor: "green" })}
+      </Text>
       <Box marginTop={1} marginBottom={2}>
-        <Text>Let's connect! I'm always open to interesting conversations and opportunities.</Text>
+        <Text>
+          Let's connect! I'm always open to interesting conversations and
+          opportunities.
+        </Text>
       </Box>
       <Box flexDirection="column">
         {contactMethods.map((contact, index) => (
@@ -57,11 +62,9 @@ export default function Contact({ data, onBack }) {
               <Text color="cyan">{contact.label}:</Text>
             </Box>
             <Text>
-              {terminalLink(
-                contact.value,
-                contact.link,
-                { fallback: (text, url) => colors.primary(text) }
-              )}
+              {terminalLink(contact.value, contact.link, {
+                fallback: (text, url) => colors.primary(text),
+              })}
             </Text>
           </Box>
         ))}
@@ -80,7 +83,10 @@ export default function Contact({ data, onBack }) {
         <Text>{colors.fire("⚡ Response time: Usually within 24 hours!")}</Text>
       </Box>
       <Box marginTop={2}>
-        <Text color="gray">Press {colors.highlight("Enter")} or {colors.highlight("B")} to go back</Text>
+        <Text color="gray">
+          Press {colors.highlight("Enter")} or {colors.highlight("B")} to go
+          back
+        </Text>
       </Box>
     </Box>
   );

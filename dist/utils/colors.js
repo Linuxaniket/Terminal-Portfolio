@@ -17,7 +17,9 @@ export var colors = {
   highlight: chalk.bold.white,
   rainbow: gradient("cyan", "magenta"),
   ocean: gradient("blue", "cyan"),
-  fire: gradient("red", "orange")
+  fire: gradient("red", "orange"),
+  instagram: gradient.instagram,
+  matrix: gradient(["#00FF41", "#005520"])
 };
 export var createBox = function createBox(content) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};

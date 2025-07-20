@@ -9,6 +9,7 @@ import { Text, Box, useInput } from "ink";
 import terminalLink from "terminal-link";
 import { colors, createBox } from "../utils/colors.js";
 export default function Projects(_ref) {
+  var _project$tech;
   var data = _ref.data,
     onBack = _ref.onBack;
   var _useState = useState(0),
@@ -20,18 +21,35 @@ export default function Projects(_ref) {
       return prev > 0 ? prev - 1 : data.length - 1;
     });else if (key.rightArrow) setSelectedProject(function (prev) {
       return prev < data.length - 1 ? prev + 1 : 0;
-    });else if (input >= "1" && input <= data.length.toString()) setSelectedProject(parseInt(input) - 1);
+    });else if (!isNaN(input) && Number(input) >= 1 && Number(input) <= data.length) setSelectedProject(Number(input) - 1);
   });
+
+  // Handle edge case if data is empty
+  if (!data || data.length === 0) return /*#__PURE__*/React.createElement(Box, {
+    flexDirection: "column"
+  }, /*#__PURE__*/React.createElement(Text, {
+    color: "red"
+  }, "No projects found!"), /*#__PURE__*/React.createElement(Box, {
+    marginTop: 1
+  }, /*#__PURE__*/React.createElement(Text, {
+    color: "gray"
+  }, "Press ", colors.highlight("Enter"), " or ", colors.highlight("B"), " to go back")));
   var project = data[selectedProject];
   var statusColors = {
     Live: "green",
     Development: "yellow",
     Planned: "gray"
   };
+  var statusEmoji = {
+    Live: "🚀",
+    Development: "⚙️",
+    Planned: "📝"
+  };
   return /*#__PURE__*/React.createElement(Box, {
     flexDirection: "column"
   }, /*#__PURE__*/React.createElement(Text, null, createBox(colors.secondary("🚀 MY PROJECTS"), {
-    borderColor: "magenta"
+    borderColor: "magenta",
+    borderStyle: "double"
   })), /*#__PURE__*/React.createElement(Box, {
     marginTop: 1,
     marginBottom: 1
@@ -40,13 +58,15 @@ export default function Projects(_ref) {
   }, data.map(function (_, index) {
     return /*#__PURE__*/React.createElement(Text, {
       key: index,
-      color: index === selectedProject ? "cyan" : "gray"
-    }, index === selectedProject ? "●" : "○");
+      color: index === selectedProject ? "cyan" : "gray",
+      bold: index === selectedProject
+    }, index === selectedProject ? "●" : "○", " ");
   })), /*#__PURE__*/React.createElement(Box, {
     flexDirection: "column"
-  }, /*#__PURE__*/React.createElement(Text, null, colors.fire(project.name), " ", /*#__PURE__*/React.createElement(Text, {
-    color: statusColors[project.status]
-  }, " [", project.status, "]")), /*#__PURE__*/React.createElement(Box, {
+  }, /*#__PURE__*/React.createElement(Box, null, /*#__PURE__*/React.createElement(Text, null, statusEmoji[project.status] || "📄", " ", colors.fire(project.name), /*#__PURE__*/React.createElement(Text, {
+    color: statusColors[project.status],
+    bold: true
+  }, " [", project.status, "]"))), /*#__PURE__*/React.createElement(Box, {
     marginTop: 1,
     marginBottom: 1
   }, /*#__PURE__*/React.createElement(Text, null, project.description)), /*#__PURE__*/React.createElement(Box, {
@@ -56,7 +76,7 @@ export default function Projects(_ref) {
   }, "\uD83D\uDEE0 Tech Stack:")), /*#__PURE__*/React.createElement(Box, {
     marginLeft: 2,
     marginBottom: 1
-  }, /*#__PURE__*/React.createElement(Text, null, project.tech.join(" • "))), /*#__PURE__*/React.createElement(Box, {
+  }, /*#__PURE__*/React.createElement(Text, null, (_project$tech = project.tech) === null || _project$tech === void 0 ? void 0 : _project$tech.join(" • "))), /*#__PURE__*/React.createElement(Box, {
     flexDirection: "column"
   }, project.github && /*#__PURE__*/React.createElement(Text, null, "\uD83D\uDCC1 Code:", " ", terminalLink(project.github, project.github, {
     fallback: function fallback(text, url) {
@@ -67,7 +87,7 @@ export default function Projects(_ref) {
       return colors.secondary(url);
     }
   })))), /*#__PURE__*/React.createElement(Box, {
-    marginTop: 3
+    marginTop: 2
   }, /*#__PURE__*/React.createElement(Text, {
     color: "yellow"
   }, "\uD83D\uDCCB All Projects:")), data.map(function (proj, index) {
@@ -75,9 +95,11 @@ export default function Projects(_ref) {
       key: index,
       marginLeft: 2
     }, /*#__PURE__*/React.createElement(Text, {
-      color: index === selectedProject ? "cyan" : "gray"
-    }, index + 1, ". ", proj.name, " ", /*#__PURE__*/React.createElement(Text, {
-      color: statusColors[proj.status]
+      color: index === selectedProject ? "cyan" : "gray",
+      bold: index === selectedProject
+    }, index + 1, ". ", proj.name, /*#__PURE__*/React.createElement(Text, {
+      color: statusColors[proj.status],
+      bold: true
     }, " [", proj.status, "]")));
   }), /*#__PURE__*/React.createElement(Box, {
     marginTop: 2

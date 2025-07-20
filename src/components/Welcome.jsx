@@ -6,7 +6,7 @@ import { colors, createBox } from "../utils/colors.js";
 export default function Welcome({ data }) {
   const asciiArt = figlet.textSync(data.name, {
     font: "ANSI Shadow",
-    horizontalLayout: "fitted"
+    horizontalLayout: "fitted",
   });
 
   return (
@@ -24,7 +24,6 @@ export default function Welcome({ data }) {
       <Box marginTop={1}>
         <Text color="gray">Press any key to continue</Text>
       </Box>
-      
     </Box>
   );
 }

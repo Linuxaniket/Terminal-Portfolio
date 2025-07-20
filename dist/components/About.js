@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, Box, useInput } from "ink";
+import terminalLink from "terminal-link";
 import { colors, createBox } from "../utils/colors.js";
 export default function About(_ref) {
   var data = _ref.data,
@@ -65,10 +66,21 @@ export default function About(_ref) {
       flexDirection: "column"
     }, /*#__PURE__*/React.createElement(Text, null, edu.institution), /*#__PURE__*/React.createElement(Text, {
       color: "cyan"
-    }, edu.degree, " ", edu.cgpa ? "- CGPA: ".concat(edu.cgpa) : "- Percentage: ".concat(edu.percentage)), /*#__PURE__*/React.createElement(Text, {
+    }, edu.degree, edu.cgpa ? " - CGPA: ".concat(edu.cgpa) : edu.percentage ? " - Percentage: ".concat(edu.percentage) : ""), /*#__PURE__*/React.createElement(Text, {
       color: "yellow"
     }, edu.duration, " | ", edu.location));
   })), /*#__PURE__*/React.createElement(Box, {
+    marginTop: 2,
+    flexDirection: "column"
+  }, /*#__PURE__*/React.createElement(Text, {
+    color: "green"
+  }, "\uD83D\uDCC4 Download Resume:"), /*#__PURE__*/React.createElement(Text, null, terminalLink(personal.resumeUrl, personal.resumeUrl, {
+    fallback: function fallback(text, url) {
+      return colors.primary(url);
+    }
+  })), /*#__PURE__*/React.createElement(Text, {
+    color: "gray"
+  }, "(Ctrl+Click or click the link to open in your browser)")), /*#__PURE__*/React.createElement(Box, {
     marginTop: 2
   }, /*#__PURE__*/React.createElement(Text, {
     color: "gray"

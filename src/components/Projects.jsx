@@ -9,10 +9,14 @@ export default function Projects({ data, onBack }) {
   useInput((input, key) => {
     if (key.return || input === "b") onBack();
     else if (key.leftArrow)
-      setSelectedProject(prev => (prev > 0 ? prev - 1 : data.length - 1));
+      setSelectedProject((prev) => (prev > 0 ? prev - 1 : data.length - 1));
     else if (key.rightArrow)
-      setSelectedProject(prev => (prev < data.length - 1 ? prev + 1 : 0));
-    else if (!isNaN(input) && Number(input) >= 1 && Number(input) <= data.length)
+      setSelectedProject((prev) => (prev < data.length - 1 ? prev + 1 : 0));
+    else if (
+      !isNaN(input) &&
+      Number(input) >= 1 &&
+      Number(input) <= data.length
+    )
       setSelectedProject(Number(input) - 1);
   });
 
@@ -23,7 +27,8 @@ export default function Projects({ data, onBack }) {
         <Text color="red">No projects found!</Text>
         <Box marginTop={1}>
           <Text color="gray">
-            Press {colors.highlight("Enter")} or {colors.highlight("B")} to go back
+            Press {colors.highlight("Enter")} or {colors.highlight("B")} to go
+            back
           </Text>
         </Box>
       </Box>
@@ -34,13 +39,13 @@ export default function Projects({ data, onBack }) {
   const statusColors = {
     Live: "green",
     Development: "yellow",
-    Planned: "gray"
+    Planned: "gray",
   };
 
   const statusEmoji = {
     Live: "🚀",
     Development: "⚙️",
-    Planned: "📝"
+    Planned: "📝",
   };
 
   return (
@@ -48,17 +53,22 @@ export default function Projects({ data, onBack }) {
       <Text>
         {createBox(colors.secondary("🚀 MY PROJECTS"), {
           borderColor: "magenta",
-          borderStyle: "double"
+          borderStyle: "double",
         })}
       </Text>
       <Box marginTop={1} marginBottom={1}>
         <Text>
-          Navigate: ← → arrows or number keys | Project {selectedProject + 1} of {data.length}
+          Navigate: ← → arrows or number keys | Project {selectedProject + 1} of{" "}
+          {data.length}
         </Text>
       </Box>
       <Box marginBottom={2}>
         {data.map((_, index) => (
-          <Text key={index} color={index === selectedProject ? "cyan" : "gray"} bold={index === selectedProject}>
+          <Text
+            key={index}
+            color={index === selectedProject ? "cyan" : "gray"}
+            bold={index === selectedProject}
+          >
             {index === selectedProject ? "●" : "○"}{" "}
           </Text>
         ))}
@@ -68,7 +78,9 @@ export default function Projects({ data, onBack }) {
           <Text>
             {statusEmoji[project.status] || "📄"} {colors.fire(project.name)}
             <Text color={statusColors[project.status]} bold>
-              {" ["}{project.status}{"]"}
+              {" ["}
+              {project.status}
+              {"]"}
             </Text>
           </Text>
         </Box>
@@ -86,7 +98,7 @@ export default function Projects({ data, onBack }) {
             <Text>
               📁 Code:{" "}
               {terminalLink(project.github, project.github, {
-                fallback: (text, url) => colors.primary(url)
+                fallback: (text, url) => colors.primary(url),
               })}
             </Text>
           )}
@@ -94,7 +106,7 @@ export default function Projects({ data, onBack }) {
             <Text>
               🌐 Demo:{" "}
               {terminalLink(project.demo, project.demo, {
-                fallback: (text, url) => colors.secondary(url)
+                fallback: (text, url) => colors.secondary(url),
               })}
             </Text>
           )}
@@ -105,17 +117,23 @@ export default function Projects({ data, onBack }) {
       </Box>
       {data.map((proj, index) => (
         <Box key={index} marginLeft={2}>
-          <Text color={index === selectedProject ? "cyan" : "gray"} bold={index === selectedProject}>
+          <Text
+            color={index === selectedProject ? "cyan" : "gray"}
+            bold={index === selectedProject}
+          >
             {index + 1}. {proj.name}
             <Text color={statusColors[proj.status]} bold>
-              {" ["}{proj.status}{"]"}
+              {" ["}
+              {proj.status}
+              {"]"}
             </Text>
           </Text>
         </Box>
       ))}
       <Box marginTop={2}>
         <Text color="gray">
-          Use ← → to browse projects | Press {colors.highlight("Enter")} or {colors.highlight("B")} to go back
+          Use ← → to browse projects | Press {colors.highlight("Enter")} or{" "}
+          {colors.highlight("B")} to go back
         </Text>
       </Box>
     </Box>

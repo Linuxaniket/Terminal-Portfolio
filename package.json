@@ -1,6 +1,6 @@
 {
   "name": "aniketdahire",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Interactive terminal portfolio showcasing Aniket Dahire's projects and skills",
   "bin": {
     "aniketdahire": "dist/index.js"

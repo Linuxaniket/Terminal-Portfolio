@@ -74,11 +74,9 @@ export default function About({ data, onBack }) {
       <Box marginTop={2} flexDirection="column">
         <Text color="green">📄 Download Resume:</Text>
         <Text>
-          {terminalLink(
-            personal.resumeUrl,
-            personal.resumeUrl,
-            { fallback: (text, url) => colors.primary(url) }
-          )}
+          {terminalLink(personal.resumeUrl, personal.resumeUrl, {
+            fallback: (text, url) => colors.primary(url),
+          })}
         </Text>
         <Text color="gray">
           (Ctrl+Click or click the link to open in your browser)
@@ -86,7 +84,8 @@ export default function About({ data, onBack }) {
       </Box>
       <Box marginTop={2}>
         <Text color="gray">
-          Press {colors.highlight("Enter")} or {colors.highlight("B")} to go back
+          Press {colors.highlight("Enter")} or {colors.highlight("B")} to go
+          back
         </Text>
       </Box>
     </Box>

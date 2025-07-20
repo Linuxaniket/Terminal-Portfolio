@@ -29,8 +29,8 @@ export default function Skills(_ref) {
     color: "magenta"
   }];
   var createSkillBar = function createSkillBar(skill) {
-    var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Math.floor(Math.random() * 5) + 3;
-    var totalBars = 8;
+    var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Math.floor(Math.random() * 6) + 5;
+    var totalBars = 10;
     var filledBars = Math.min(level, totalBars);
     var emptyBars = totalBars - filledBars;
     return /*#__PURE__*/React.createElement(Box, null, /*#__PURE__*/React.createElement(Box, {
