@@ -1,0 +1,46 @@
+{
+  "name": "aniketdahire",
+  "version": "1.0.4",
+  "description": "Interactive terminal portfolio showcasing Aniket Dahire's projects and skills",
+  "bin": {
+    "aniketdahire": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.jsx",
+    "build": "babel src --extensions \".js,.jsx\" --out-dir dist --copy-files",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "portfolio",
+    "terminal",
+    "npx",
+    "cli",
+    "ink",
+    "interactive"
+  ],
+  "author": "Aniket Dahire",
+  "license": "MIT",
+  "dependencies": {
+    "boxen": "^7.1.1",
+    "chalk": "^5.3.0",
+    "figlet": "^1.8.2",
+    "gradient-string": "^2.0.2",
+    "ink": "^4.4.1",
+    "ink-spinner": "^5.0.0",
+    "ink-text-input": "^5.0.1",
+    "react": "^18.2.0",
+    "terminal-link": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "esbuild": "^0.25.8",
+    "tsx": "^4.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
